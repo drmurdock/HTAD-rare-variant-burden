@@ -1,18 +1,24 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite the preferred citation below."
-
-title: "HTAD Rare Variant Burden Analysis"
+message: "If you use this software, please cite both the software release and the preferred scientific citation."
+title: "HTAD Rare-Variant Burden Analysis"
 type: software
-
 authors:
   - family-names: "Murdock"
     given-names: "David R."
-    orcid: "https://orcid.org/0000-0002-8536-3091"
-
-license: MIT
-repository-code: "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
-version: "1.0.0"
+version: "1.0.1"
 date-released: "2026-11-13"
+doi: "10.5281/zenodo.24203335"
+repository-code: "https://github.com/drmurdock/HTAD-rare-variant-burden"
+url: "https://doi.org/10.5281/zenodo.24203335"
+license: MIT
+keywords:
+  - thoracic aortic disease
+  - rare variants
+  - burden analysis
+  - Firth logistic regression
+  - meta-analysis
+  - UK Biobank
+  - All of Us
 
 preferred-citation:
   type: article
@@ -24,7 +30,45 @@ preferred-citation:
       given-names: "Pujun"
     - family-names: "Guo"
       given-names: "Dongchuan"
-    # remaining manuscript authors go here
+    - family-names: "Bermudez"
+      given-names: "Francisca"
+    - family-names: "DePaolo"
+      given-names: "John S."
+    - family-names: "Cabot"
+      given-names: "John"
+    - family-names: "Nazeen"
+      given-names: "Sumaiya"
+    - family-names: "Nasir"
+      given-names: "Habib"
+    - family-names: "Gupta"
+      given-names: "Rajat M."
+    - family-names: "Jha"
+      given-names: "Alok"
+    - family-names: "Elefteriades"
+      given-names: "John"
+    - family-names: "McGivern"
+      given-names: "Bobbi"
+    - family-names: "McWalter"
+      given-names: "Kirsty"
+    - family-names: "Anderson"
+      given-names: "Samantha K."
+    - family-names: "Jones"
+      given-names: "Carolyn"
+    - family-names: "Lynch"
+      given-names: "Julie A."
+    - family-names: "Chang"
+      given-names: "Kyong-Mi"
+    - family-names: "Tsao"
+      given-names: "Philip S."
+    - name: "VA Million Veteran Program"
+    - name: "Penn Medicine BioBank"
+    - family-names: "Damrauer"
+      given-names: "Scott M."
+    - family-names: "Chen"
+      given-names: "Han"
+    - family-names: "Milewicz"
+      given-names: "Dianna M."
   journal: "medRxiv"
   year: 2026
   doi: "10.64898/2026.09.16.26363254"
+  url: "https://www.medrxiv.org/content/10.64898/2026.09.16.26363254v1"
