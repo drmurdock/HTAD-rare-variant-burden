@@ -4,7 +4,7 @@ Code supporting the primary gene-based rare-variant burden and meta-analysis res
 
 **Gene-Based Rare Variant Burden Analyses Across Biobanks Identify Novel High-Risk Genes for Thoracic Aortic Disease**
 
-This repository contains the statistical analysis code used for UK Biobank (UKB) and All of Us (AoU) gene-based burden testing, the UKB+AoU discovery meta-analysis, and the subsequent multi-cohort meta-analysis incorporating replication cohorts.
+This repository contains the statistical analysis code used for UK Biobank (UKB) and All of Us (AoU) gene-based burden testing, the UKB+AoU discovery meta-analysis, and the subsequent multi-cohort meta-analysis incorporating replication cohorts. The UKB burden analyses were run within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**, while the AoU analyses were run within the **All of Us Researcher Workbench**. The discovery and multi-cohort meta-analysis scripts are intended to be run **locally** on prepared cohort-level result files after the cohort-specific burden analyses have been completed.
 
 ## Repository structure
 
@@ -32,18 +32,20 @@ Pre-filtered qualifying variants / gene carrier lists
             │                │
             ▼                ▼
            UKB              AoU
+    UKB RAP / DNAnexus  Researcher Workbench
      Firth regression   Firth regression
             │                │
             └───────┬────────┘
                     ▼
         UKB + AoU discovery meta-analysis
-             fixed-effect IVW
+          local execution; fixed-effect IVW
                     │
                     ▼
           Replication cohort results
                     │
                     ▼
           Multi-cohort meta-analysis
+             local execution
           ├── fixed-effect IVW (primary)
           └── DerSimonian-Laird random effects (sensitivity)
 ```
@@ -69,13 +71,15 @@ The manuscript phenotype codes used in the public analysis scripts are:
 
 ## 1. UK Biobank burden analysis
 
+The UK Biobank analysis was performed within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**. The `ukb_firth_logistic_regression.py` script is intended to be run in that environment and assumes access to project-mounted UKB phenotype, covariate, principal-component, relatedness, and pre-filtered variant files. Alternative file locations can be supplied through the command-line options described below.
+
 Script:
 
 ```text
 ukb/ukb_firth_logistic_regression.py
 ```
 
-The UKB analysis uses Firth penalized logistic regression with a binary gene-level qualifying-variant carrier indicator. The model includes age, sex, and PC1-PC4.
+Within the RAP/DNAnexus environment, the UKB analysis uses Firth penalized logistic regression with a binary gene-level qualifying-variant carrier indicator. The model includes age, sex, and PC1-PC4.
 
 The public script preserves the historical command-line behavior in which hypertension (`HTN`) is included by default. To reproduce the **primary manuscript model**, use `--no_htn`. Related individuals are removed when `--exclude_eids` is supplied.
 
@@ -195,7 +199,7 @@ Script:
 meta_analysis/meta_analysis_discovery.py
 ```
 
-This script performs a two-cohort fixed-effect inverse-variance-weighted meta-analysis of UKB and AoU Firth results.
+This script is intended to be run **locally** and performs a two-cohort fixed-effect inverse-variance-weighted meta-analysis of prepared UKB and AoU Firth result files.
 
 For each cohort, the script reconstructs the log odds ratio and standard error from the reported odds ratio and 95% confidence interval:
 
@@ -238,7 +242,7 @@ Script:
 meta_analysis/meta_analysis_multicohort.py
 ```
 
-This script performs the overall meta-analysis across UKB, AoU, and available replication cohorts.
+This script is intended to be run **locally** and performs the overall meta-analysis across prepared UKB, AoU, and available replication-cohort result files.
 
 The **fixed-effect inverse-variance-weighted model is the primary analysis**. A **DerSimonian-Laird random-effects model** is generated as a sensitivity analysis.
 
@@ -322,15 +326,17 @@ python -m pip install -r requirements.txt
 
 The Firth regression analyses use the [`firthlogist`](https://github.com/jzluo/firthlogist) package. In AoU, the worker can either import an installed copy of `firthlogist` or use the ZIP file localized by `run_aou_firth.sh`.
 
-The AoU launcher additionally requires access to the All of Us Researcher Workbench job-submission environment.
+The UKB script is intended for execution within the UK Biobank RAP/DNAnexus environment. The AoU launcher additionally requires access to the All of Us Researcher Workbench job-submission environment. The two meta-analysis scripts do not require either cloud platform and are intended for local execution once the required cohort-level result files have been prepared.
 
 ## Data access
 
-This repository does not contain individual-level UK Biobank or All of Us data, participant identifiers, carrier lists, or controlled-access cohort data. Researchers must obtain access to the relevant resources through the corresponding data-access procedures and construct the required input files within the approved computing environments.
+This repository does not contain individual-level UK Biobank or All of Us data, participant identifiers, carrier lists, or controlled-access cohort data. Researchers must obtain access to the relevant resources through the corresponding data-access procedures and construct the required input files within the approved computing environments, including the UK Biobank RAP/DNAnexus environment for UKB analyses and the All of Us Researcher Workbench for AoU analyses.
 
 ## Reproducibility notes
 
 - The scripts are intended to reproduce the statistical analysis stages described above once the required pre-filtered cohort inputs have been prepared.
+- The UKB burden-analysis script is designed for the UK Biobank RAP hosted by DNAnexus and uses paths consistent with a RAP project-mounted filesystem unless overridden.
+- The discovery and multi-cohort meta-analysis scripts are intended for local execution on prepared cohort-level result files.
 - Cloud job-submission syntax may evolve independently of the statistical analysis code. `run_aou_firth.sh` uses the current AoU dsub helper interface used when this repository was prepared.
 - Filenames and directory layouts can be changed using the command-line or environment-variable overrides documented in the scripts.
 
