@@ -346,10 +346,10 @@ This repository does not contain individual-level UK Biobank or All of Us data, 
 ## Reproducibility notes
 
 - The scripts are intended to reproduce the statistical analysis stages described above once the required pre-filtered cohort inputs have been prepared.
-- The UKB burden-analysis script is designed for execution within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**, and uses paths consistent with a RAP project-mounted filesystem unless overridden.
-- The AoU burden-analysis scripts are designed for execution within the **All of Us Researcher Workbench**. `run_aou_firth.sh` submits chromosome-, phenotype-, and variant-class-specific cloud jobs, and `aou_firth_logistic_regression.py` performs the corresponding gene-based Firth logistic-regression analyses.
+- The UKB burden-analysis script is designed for execution within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**.
+- The AoU burden-analysis scripts are designed for execution within the **All of Us Researcher Workbench**.
 - The discovery and multi-cohort meta-analysis scripts are intended for **local execution using prepared summary-level cohort result files**. Individual-level participant data are not required for these meta-analysis stages.
-- Cloud job-submission interfaces may evolve independently of the statistical analysis code. `run_aou_firth.sh` uses the current All of Us dsub helper interface used when this repository was prepared.
+- Cloud job-submission interfaces may evolve independently of the statistical analysis code.
 - Filenames and directory layouts can be changed using the command-line or environment-variable overrides documented in the scripts.
 
 ## Citation
