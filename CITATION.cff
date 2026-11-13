@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the preferred citation below."
+
+title: "HTAD Rare Variant Burden Analysis"
+type: software
+
+authors:
+  - family-names: "Murdock"
+    given-names: "David R."
+    orcid: "https://orcid.org/0000-0002-8536-3091"
+
+license: MIT
+repository-code: "https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+version: "1.0.0"
+date-released: "2026-11-13"
+
+preferred-citation:
+  type: article
+  title: "Gene-Based Rare Variant Burden Analyses Across Biobanks Identify Novel High-Risk Genes for Thoracic Aortic Disease"
+  authors:
+    - family-names: "Murdock"
+      given-names: "David R."
+    - family-names: "Guan"
+      given-names: "Pujun"
+    - family-names: "Guo"
+      given-names: "Dongchuan"
+    # remaining manuscript authors go here
+  journal: "medRxiv"
+  year: 2026
+  doi: "10.64898/2026.09.16.26363254"
