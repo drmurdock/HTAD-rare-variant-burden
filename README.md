@@ -6,11 +6,22 @@ Code supporting the primary gene-based rare-variant burden and meta-analysis res
 
 This repository contains the statistical analysis code used for UK Biobank (UKB) and All of Us (AoU) gene-based burden testing, the UKB+AoU discovery meta-analysis, and the subsequent multi-cohort meta-analysis incorporating replication cohorts. The UKB burden analyses were run within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**, while the AoU analyses were run within the **All of Us Researcher Workbench**. The discovery and multi-cohort meta-analysis scripts are intended to be run **locally** on prepared **summary-level cohort result files** after the cohort-specific burden analyses have been completed; individual-level participant data are not required for these meta-analysis stages.
 
+## Software archive
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24203335.svg)](https://doi.org/10.5281/zenodo.24203335)
+
+Version `v1.0.1` of this analysis code is permanently archived on Zenodo:
+
+**DOI:** [10.5281/zenodo.24203335](https://doi.org/10.5281/zenodo.24203335)
+
+
 ## Repository structure
 
 ```text
 .
 ├── README.md
+├── CITATION.cff
+├── LICENSE
 ├── requirements.txt
 ├── .gitignore
 ├── ukb/
@@ -335,17 +346,31 @@ This repository does not contain individual-level UK Biobank or All of Us data, 
 ## Reproducibility notes
 
 - The scripts are intended to reproduce the statistical analysis stages described above once the required pre-filtered cohort inputs have been prepared.
-- The UKB burden-analysis script is designed for execution within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**.
-- The AoU burden-analysis scripts are designed for execution within the **All of Us Researcher Workbench**.
+- The UKB burden-analysis script is designed for execution within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**, and uses paths consistent with a RAP project-mounted filesystem unless overridden.
+- The AoU burden-analysis scripts are designed for execution within the **All of Us Researcher Workbench**. `run_aou_firth.sh` submits chromosome-, phenotype-, and variant-class-specific cloud jobs, and `aou_firth_logistic_regression.py` performs the corresponding gene-based Firth logistic-regression analyses.
 - The discovery and multi-cohort meta-analysis scripts are intended for **local execution using prepared summary-level cohort result files**. Individual-level participant data are not required for these meta-analysis stages.
-- Cloud job-submission interfaces may evolve independently of the statistical analysis code.
+- Cloud job-submission interfaces may evolve independently of the statistical analysis code. `run_aou_firth.sh` uses the current All of Us dsub helper interface used when this repository was prepared.
 - Filenames and directory layouts can be changed using the command-line or environment-variable overrides documented in the scripts.
 
 ## Citation
 
-If you use this code, please cite the current preprint:
+### Scientific study
+
+If you use this code in work related to the study, please cite the current preprint:
 
 > Murdock DR, Guan P, Guo D, et al. **Gene-Based Rare Variant Burden Analyses Across Biobanks Identify Novel High-Risk Genes for Thoracic Aortic Disease.** *medRxiv*. 2026. doi: [10.64898/2026.09.16.26363254](https://doi.org/10.64898/2026.09.16.26363254).
+
+Preprint: [medRxiv version 1](https://www.medrxiv.org/content/10.64898/2026.09.16.26363254v1)
+
+### Software
+
+The versioned software release can be cited as:
+
+> Murdock DR. **HTAD Rare-Variant Burden Analysis.** Version 1.0.1. Zenodo. 2026. doi: [10.5281/zenodo.24203335](https://doi.org/10.5281/zenodo.24203335).
+
+Citation metadata are also provided in `CITATION.cff`.
+
+The scientific-study citation can be updated to the final peer-reviewed publication once available.
 
 ## License
 
