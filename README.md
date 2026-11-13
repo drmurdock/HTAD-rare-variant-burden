@@ -347,10 +347,6 @@ If you use this code, please cite the current preprint:
 
 > Murdock DR, Guan P, Guo D, et al. **Gene-Based Rare Variant Burden Analyses Across Biobanks Identify Novel High-Risk Genes for Thoracic Aortic Disease.** *medRxiv*. 2026. doi: [10.64898/2026.09.16.26363254](https://doi.org/10.64898/2026.09.16.26363254).
 
-Preprint: [medRxiv version 1](https://www.medrxiv.org/content/10.64898/2026.09.16.26363254v1)
-
-This citation can be updated to the final peer-reviewed publication once available.
-
 ## License
 
 See the repository `LICENSE` file.
