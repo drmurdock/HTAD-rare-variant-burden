@@ -4,7 +4,7 @@ Code supporting the primary gene-based rare-variant burden and meta-analysis res
 
 **Gene-Based Rare Variant Burden Analyses Across Biobanks Identify Novel High-Risk Genes for Thoracic Aortic Disease**
 
-This repository contains the statistical analysis code used for UK Biobank (UKB) and All of Us (AoU) gene-based burden testing, the UKB+AoU discovery meta-analysis, and the subsequent multi-cohort meta-analysis incorporating replication cohorts. The UKB burden analyses were run within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**, while the AoU analyses were run within the **All of Us Researcher Workbench**. The discovery and multi-cohort meta-analysis scripts are intended to be run **locally** on prepared cohort-level result files after the cohort-specific burden analyses have been completed.
+This repository contains the statistical analysis code used for UK Biobank (UKB) and All of Us (AoU) gene-based burden testing, the UKB+AoU discovery meta-analysis, and the subsequent multi-cohort meta-analysis incorporating replication cohorts. The UKB burden analyses were run within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**, while the AoU analyses were run within the **All of Us Researcher Workbench**. The discovery and multi-cohort meta-analysis scripts are intended to be run **locally** on prepared **summary-level cohort result files** after the cohort-specific burden analyses have been completed; individual-level participant data are not required for these meta-analysis stages.
 
 ## Repository structure
 
@@ -199,7 +199,7 @@ Script:
 meta_analysis/meta_analysis_discovery.py
 ```
 
-This script is intended to be run **locally** and performs a two-cohort fixed-effect inverse-variance-weighted meta-analysis of prepared UKB and AoU Firth result files.
+This script is intended to be run **locally** and performs a two-cohort fixed-effect inverse-variance-weighted meta-analysis of prepared **summary-level UKB and AoU Firth result files**. It does not require individual-level participant data.
 
 For each cohort, the script reconstructs the log odds ratio and standard error from the reported odds ratio and 95% confidence interval:
 
@@ -242,7 +242,7 @@ Script:
 meta_analysis/meta_analysis_multicohort.py
 ```
 
-This script is intended to be run **locally** and performs the overall meta-analysis across prepared UKB, AoU, and available replication-cohort result files.
+This script is intended to be run **locally** and performs the overall meta-analysis across prepared **summary-level UKB, AoU, and replication-cohort result files**. It does not require individual-level participant data.
 
 The **fixed-effect inverse-variance-weighted model is the primary analysis**. A **DerSimonian-Laird random-effects model** is generated as a sensitivity analysis.
 
@@ -335,18 +335,21 @@ This repository does not contain individual-level UK Biobank or All of Us data, 
 ## Reproducibility notes
 
 - The scripts are intended to reproduce the statistical analysis stages described above once the required pre-filtered cohort inputs have been prepared.
-- The UKB burden-analysis script is designed for the UK Biobank RAP hosted by DNAnexus and uses paths consistent with a RAP project-mounted filesystem unless overridden.
-- The discovery and multi-cohort meta-analysis scripts are intended for local execution on prepared cohort-level result files.
-- Cloud job-submission syntax may evolve independently of the statistical analysis code. `run_aou_firth.sh` uses the current AoU dsub helper interface used when this repository was prepared.
+- The UKB burden-analysis script is designed for execution within the **UK Biobank Research Analysis Platform (RAP), hosted by DNAnexus**, and uses paths consistent with a RAP project-mounted filesystem unless overridden.
+- The AoU burden-analysis scripts are designed for execution within the **All of Us Researcher Workbench**. `run_aou_firth.sh` submits chromosome-, phenotype-, and variant-class-specific cloud jobs, and `aou_firth_logistic_regression.py` performs the corresponding gene-based Firth logistic-regression analyses.
+- The discovery and multi-cohort meta-analysis scripts are intended for **local execution using prepared summary-level cohort result files**. Individual-level participant data are not required for these meta-analysis stages.
+- Cloud job-submission interfaces may evolve independently of the statistical analysis code. `run_aou_firth.sh` uses the current All of Us dsub helper interface used when this repository was prepared.
 - Filenames and directory layouts can be changed using the command-line or environment-variable overrides documented in the scripts.
 
 ## Citation
 
-If you use this code, please cite:
+If you use this code, please cite the current preprint:
 
-> *Gene-Based Rare Variant Burden Analyses Across Biobanks Identify Novel High-Risk Genes for Thoracic Aortic Disease.*
+> Murdock DR, Guan P, Guo D, et al. **Gene-Based Rare Variant Burden Analyses Across Biobanks Identify Novel High-Risk Genes for Thoracic Aortic Disease.** *medRxiv*. 2026. doi: [10.64898/2026.09.16.26363254](https://doi.org/10.64898/2026.09.16.26363254).
 
-Full citation information can be added here after publication.
+Preprint: [medRxiv version 1](https://www.medrxiv.org/content/10.64898/2026.09.16.26363254v1)
+
+This citation can be updated to the final peer-reviewed publication once available.
 
 ## License
 
