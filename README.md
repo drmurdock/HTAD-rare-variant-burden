@@ -370,8 +370,6 @@ The versioned software release can be cited as:
 
 Citation metadata are also provided in `CITATION.cff`.
 
-The scientific-study citation can be updated to the final peer-reviewed publication once available.
-
 ## License
 
 See the repository `LICENSE` file.
